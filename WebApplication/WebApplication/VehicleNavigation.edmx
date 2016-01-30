@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="vehicle_navigationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ride_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="passengerID" Type="int" Nullable="false" />
+          <Property Name="driverID" Type="int" Nullable="false" />
+          <Property Name="from_destination" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="to_destination" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="from_lat" Type="float" Nullable="false" />
+          <Property Name="from_lng" Type="float" Nullable="false" />
+          <Property Name="to_lat" Type="float" Nullable="false" />
+          <Property Name="to_lng" Type="float" Nullable="false" />
+          <Property Name="reserve_date_start" Type="datetime" />
+          <Property Name="reserve_date_end" Type="datetime" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="total_miles" Type="int" />
+          <Property Name="amount" Type="float" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="review" Type="nvarchar" MaxLength="150" />
+          <Property Name="rating" Type="float" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="30" />
+          <Property Name="nic" Type="nvarchar" MaxLength="30" />
+          <Property Name="userType" Type="nvarchar" MaxLength="20" />
+          <Property Name="street" Type="nvarchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="country" Type="nvarchar" MaxLength="50" />
+          <Property Name="lat" Type="float" />
+          <Property Name="lng" Type="float" />
+          <Property Name="is_login" Type="int" />
+          <Property Name="is_vehicle_added" Type="int" />
+          <Property Name="reg_id" Type="nvarchar" MaxLength="255" />
+          <Property Name="is_available" Type="int" />
+          <Property Name="current_lat" Type="float" />
+          <Property Name="current_lgn" Type="float" />
+          <Property Name="image" Type="text" />
+        </EntityType>
+        <EntityType Name="vehicle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="model_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="manufacturer_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="year_name" Type="int" />
+          <Property Name="ownerId" Type="int" />
+        </EntityType>
+        <Association Name="FK__vehicle__userId__1273C1CD">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="vehicle" Type="Self.vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicle">
+              <PropertyRef Name="ownerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vehicle_navigationModelStoreContainer">
+          <EntitySet Name="ride_detail" EntityType="Self.ride_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vehicle" EntityType="Self.vehicle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__vehicle__userId__1273C1CD" Association="Self.FK__vehicle__userId__1273C1CD">
+            <End Role="users" EntitySet="users" />
+            <End Role="vehicle" EntitySet="vehicle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vehicle_navigationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ride_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="passengerID" Type="Int32" Nullable="false" />
+          <Property Name="driverID" Type="Int32" Nullable="false" />
+          <Property Name="from_destination" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="to_destination" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="from_lat" Type="Double" Nullable="false" />
+          <Property Name="from_lng" Type="Double" Nullable="false" />
+          <Property Name="to_lat" Type="Double" Nullable="false" />
+          <Property Name="to_lng" Type="Double" Nullable="false" />
+          <Property Name="reserve_date_start" Type="DateTime" Precision="3" />
+          <Property Name="reserve_date_end" Type="DateTime" Precision="3" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="total_miles" Type="Int32" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="review" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="rating" Type="Double" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="nic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="userType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lat" Type="Double" />
+          <Property Name="lng" Type="Double" />
+          <Property Name="is_login" Type="Int32" />
+          <Property Name="is_vehicle_added" Type="Int32" />
+          <Property Name="reg_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="is_available" Type="Int32" />
+          <Property Name="current_lat" Type="Double" />
+          <Property Name="current_lgn" Type="Double" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="vehicles" Relationship="Self.FK__vehicle__userId__1273C1CD" FromRole="users" ToRole="vehicle" />
+        </EntityType>
+        <EntityType Name="vehicle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="model_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="manufacturer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="year_name" Type="Int32" />
+          <Property Name="ownerId" Type="Int32" />
+          <NavigationProperty Name="user" Relationship="Self.FK__vehicle__userId__1273C1CD" FromRole="vehicle" ToRole="users" />
+        </EntityType>
+        <Association Name="FK__vehicle__userId__1273C1CD">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="vehicle" Type="Self.vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicle">
+              <PropertyRef Name="ownerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vehicle_navigationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ride_detail" EntityType="Self.ride_detail" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="vehicles" EntityType="Self.vehicle" />
+          <AssociationSet Name="FK__vehicle__userId__1273C1CD" Association="Self.FK__vehicle__userId__1273C1CD">
+            <End Role="users" EntitySet="users" />
+            <End Role="vehicle" EntitySet="vehicles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vehicle_navigationModelStoreContainer" CdmEntityContainer="vehicle_navigationEntities">
+          <EntitySetMapping Name="ride_detail">
+            <EntityTypeMapping TypeName="vehicle_navigationModel.ride_detail">
+              <MappingFragment StoreEntitySet="ride_detail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="passengerID" ColumnName="passengerID" />
+                <ScalarProperty Name="driverID" ColumnName="driverID" />
+                <ScalarProperty Name="from_destination" ColumnName="from_destination" />
+                <ScalarProperty Name="to_destination" ColumnName="to_destination" />
+                <ScalarProperty Name="from_lat" ColumnName="from_lat" />
+                <ScalarProperty Name="from_lng" ColumnName="from_lng" />
+                <ScalarProperty Name="to_lat" ColumnName="to_lat" />
+                <ScalarProperty Name="to_lng" ColumnName="to_lng" />
+                <ScalarProperty Name="reserve_date_start" ColumnName="reserve_date_start" />
+                <ScalarProperty Name="reserve_date_end" ColumnName="reserve_date_end" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="total_miles" ColumnName="total_miles" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="review" ColumnName="review" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="vehicle_navigationModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="nic" ColumnName="nic" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="lat" ColumnName="lat" />
+                <ScalarProperty Name="lng" ColumnName="lng" />
+                <ScalarProperty Name="is_login" ColumnName="is_login" />
+                <ScalarProperty Name="is_vehicle_added" ColumnName="is_vehicle_added" />
+                <ScalarProperty Name="reg_id" ColumnName="reg_id" />
+                <ScalarProperty Name="is_available" ColumnName="is_available" />
+                <ScalarProperty Name="current_lat" ColumnName="current_lat" />
+                <ScalarProperty Name="current_lgn" ColumnName="current_lgn" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehicles">
+            <EntityTypeMapping TypeName="vehicle_navigationModel.vehicle">
+              <MappingFragment StoreEntitySet="vehicle">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="model_name" ColumnName="model_name" />
+                <ScalarProperty Name="manufacturer_name" ColumnName="manufacturer_name" />
+                <ScalarProperty Name="year_name" ColumnName="year_name" />
+                <ScalarProperty Name="ownerId" ColumnName="ownerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

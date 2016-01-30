@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="vehicle_navigationModelStoreContainer" CdmEntityContainer="vehicle_navigationEntities">
+    <EntitySetMapping Name="ride_detail">
+      <EntityTypeMapping TypeName="vehicle_navigationModel.ride_detail">
+        <MappingFragment StoreEntitySet="ride_detail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="passengerID" ColumnName="passengerID" />
+          <ScalarProperty Name="driverID" ColumnName="driverID" />
+          <ScalarProperty Name="from_destination" ColumnName="from_destination" />
+          <ScalarProperty Name="to_destination" ColumnName="to_destination" />
+          <ScalarProperty Name="from_lat" ColumnName="from_lat" />
+          <ScalarProperty Name="from_lng" ColumnName="from_lng" />
+          <ScalarProperty Name="to_lat" ColumnName="to_lat" />
+          <ScalarProperty Name="to_lng" ColumnName="to_lng" />
+          <ScalarProperty Name="reserve_date_start" ColumnName="reserve_date_start" />
+          <ScalarProperty Name="reserve_date_end" ColumnName="reserve_date_end" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="total_miles" ColumnName="total_miles" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="review" ColumnName="review" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="vehicle_navigationModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="nic" ColumnName="nic" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="lng" ColumnName="lng" />
+          <ScalarProperty Name="is_login" ColumnName="is_login" />
+          <ScalarProperty Name="is_vehicle_added" ColumnName="is_vehicle_added" />
+          <ScalarProperty Name="reg_id" ColumnName="reg_id" />
+          <ScalarProperty Name="is_available" ColumnName="is_available" />
+          <ScalarProperty Name="current_lat" ColumnName="current_lat" />
+          <ScalarProperty Name="current_lgn" ColumnName="current_lgn" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vehicles">
+      <EntityTypeMapping TypeName="vehicle_navigationModel.vehicle">
+        <MappingFragment StoreEntitySet="vehicle">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="model_name" ColumnName="model_name" />
+          <ScalarProperty Name="manufacturer_name" ColumnName="manufacturer_name" />
+          <ScalarProperty Name="year_name" ColumnName="year_name" />
+          <ScalarProperty Name="ownerId" ColumnName="ownerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

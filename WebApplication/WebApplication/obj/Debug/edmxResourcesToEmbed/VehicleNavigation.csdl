@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vehicle_navigationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ride_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="passengerID" Type="Int32" Nullable="false" />
+    <Property Name="driverID" Type="Int32" Nullable="false" />
+    <Property Name="from_destination" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="to_destination" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="from_lat" Type="Double" Nullable="false" />
+    <Property Name="from_lng" Type="Double" Nullable="false" />
+    <Property Name="to_lat" Type="Double" Nullable="false" />
+    <Property Name="to_lng" Type="Double" Nullable="false" />
+    <Property Name="reserve_date_start" Type="DateTime" Precision="3" />
+    <Property Name="reserve_date_end" Type="DateTime" Precision="3" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="total_miles" Type="Int32" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="review" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="rating" Type="Double" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="nic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="userType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="lng" Type="Double" />
+    <Property Name="is_login" Type="Int32" />
+    <Property Name="is_vehicle_added" Type="Int32" />
+    <Property Name="reg_id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="is_available" Type="Int32" />
+    <Property Name="current_lat" Type="Double" />
+    <Property Name="current_lgn" Type="Double" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="vehicles" Relationship="Self.FK__vehicle__userId__1273C1CD" FromRole="users" ToRole="vehicle" />
+  </EntityType>
+  <EntityType Name="vehicle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="model_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="manufacturer_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="year_name" Type="Int32" />
+    <Property Name="ownerId" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="Self.FK__vehicle__userId__1273C1CD" FromRole="vehicle" ToRole="users" />
+  </EntityType>
+  <Association Name="FK__vehicle__userId__1273C1CD">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="vehicle" Type="Self.vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vehicle">
+        <PropertyRef Name="ownerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vehicle_navigationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ride_detail" EntityType="Self.ride_detail" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="vehicles" EntityType="Self.vehicle" />
+    <AssociationSet Name="FK__vehicle__userId__1273C1CD" Association="Self.FK__vehicle__userId__1273C1CD">
+      <End Role="users" EntitySet="users" />
+      <End Role="vehicle" EntitySet="vehicles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
