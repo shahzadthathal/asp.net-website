@@ -68,7 +68,7 @@
                      </ul>
 
                      <ul id="showlogout" runat="server" class="nav navbar-nav navbar-right">
-                          <li><a runat="server" href="~/Account/Manage" title="Manage your account">Welcome (<%= Session["name"]!=null ?  Session["name"]: "Guest" %>)</a></li>
+                          <li><a runat="server" href="~/" title="Manage your account">Welcome (<%= Session["name"]!=null ?  Session["name"]: "Guest" %>)</a></li>
                         <li> <a runat="server" href="~/logout" onclick="Unnamed_LoggingOut">Logout</a></li>
                       </ul>
 
